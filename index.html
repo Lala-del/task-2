@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+
+    <script>
+        'use strict';
+        let numberOfFilms = 0;
+        function start(){
+            numberOfFilms = prompt('Axirinci ay erzinde nece film izlemisiniz?');
+        }
+        start();
+        const personalMovieDB = {
+            count: numberOfFilms,
+            movies: {},
+            private: false,
+        };
+        const isEmpty = str => !str.trim().length;
+        function rememberMyFilms(){
+            for (let i = 0; i < personalMovieDB.count; i++) {
+                const a = prompt('Zehmet olmasa filmin adini daxil edin'),
+                      b = prompt('(0-10) araliginda filmi nece qimetlendirersiniz?');
+                let string = /^[a-z]+$/i;
+                let numeric = /^\d+$/;
+                if( !isEmpty(a) && !isEmpty(b) && string.test(a) && numeric.test(b)){
+                    personalMovieDB.movies[i] = {
+                        movies: a,
+                        rating: b
+                    }
+                    console.log('done');
+                }else{
+                    console.log('error');
+                    i--;
+                }
+            }
+        }
+        function showVisibility(){
+            if (personalMovieDB.private===true) {
+                personalMovieDB.private===false
+            } else {
+                personalMovieDB.private= true
+            }
+        }
+        function showMyDB(){
+            if(personalMovieDB.private === true){
+                console.log("Bu hesab shexsidir")
+            }
+            else{
+                console.log(personalMovieDB.movies);
+            }
+        }
+        rememberMyFilms();
+        showMyDB();
+        showVisibility();
+    </script>
+</body>
+</html>
